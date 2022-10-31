@@ -4,6 +4,8 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 import { Octokit } from "https://cdn.skypack.dev/octokit?dts";
 import type { components } from "https://cdn.skypack.dev/@octokit/openapi-types?dts";
 import Slider from "../islands/Slider.tsx";
+import shuffle from "https://cdn.skypack.dev/lodash/shuffle?dts";
+import { parse } from "https://deno.land/std@0.161.0/encoding/yaml.ts";
 
 interface HomeProps {
   apps: {
@@ -24,13 +26,47 @@ export const handler: Handlers<HomeProps | null> = {
     const apps = (await octokit.rest.repos.getContent({
       repo: "apps",
       owner: "runcitadel",
-      path: "apps",
+      path: "apps"
     })).data as components["schemas"]["content-directory"];
-    const simplified_apps = apps.map(async (app) => {
+    const nonfreeApps = (await octokit.rest.repos.getContent({
+      repo: "apps-nonfree",
+      owner: "runcitadel",
+      path: "apps"
+    })).data as components["schemas"]["content-directory"];
+    const allApps = shuffle([...nonfreeApps, ...apps]);
+    const simplified_apps = allApps.map(async (app) => {
+      const repo = app.html_url!.replace("https://github.com/", "").split("/").slice(0, 2).join("/");
+      const app_file = await fetch(`https://raw.githubusercontent.com/${repo}/v4-stable/apps/${app.name}/app.yml`);
+      let app_data = parse(await app_file.text()) as any;
+      if (!app_data?.metadata?.name || !app_data?.metadata?.tagline) {
+        const app_file = await fetch(`https://raw.githubusercontent.com/${repo}/v4-stable/apps/${app.name}/app.yml.jinja`);
+        const text = await app_file.text();
+        const metadata = {
+          name: "",
+          tagline: "",
+        };
+        for (const line of text.split("\n")) {
+          const _line = line.trim();
+          if (_line.startsWith("name: ")) {
+            metadata.name = line.replace("name: ", "").trim();
+            if (metadata.tagline) {
+              break;
+            }
+          }
+          if (_line.startsWith("tagline: ")) {
+            metadata.tagline = line.replace("tagline: ", "").trim();
+            if (metadata.name) {
+              break;
+            }
+          }
+        }
+        app_data = { metadata };
+        console.log(metadata);
+      }
       return {
-        name: app.name,
+        name: app_data?.metadata?.name || app.name,
         id: app.name,
-        tagline: "A cool app",
+        tagline: app_data?.metadata?.tagline || "A cool app",
       };
     });
     apps;
@@ -123,17 +159,18 @@ export default function Home(ctx: PageProps<HomeProps>) {
           }
         </div>
         <div class="mt-8 p-4 flex flex-col justify-center items-center text-center ">
-          <h2 class="font-bold text-5xl mb-2">Unlimited possibilities</h2>
+          <Slider apps={ctx.data.apps.slice(0, Math.floor(ctx.data.apps.length / 2))} isReverse />
+          <h2 class="font-bold text-5xl mb-2 mt-8">Unlimited possibilities</h2>
           <h4 class="text-2xl mb-6">
             With our app store, you can run literally anything on your node.
           </h4>
-          <p>
+          <p class="mb-8">
             Not only does Citadel include a large selection of apps already
             available, anyone from the community can build their own app store
             and you can install it. This even includes app stores built for
             Umbrel!
           </p>
-          <Slider apps={ctx.data.apps} />
+          <Slider apps={ctx.data.apps.slice(Math.floor(ctx.data.apps.length / 2), ctx.data.apps.length - 1)} />
         </div>
       </div>
     </>

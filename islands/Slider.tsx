@@ -78,6 +78,7 @@ interface SliderProps {
       id: string;
       tagline: string;
     }[];
+    isReverse?: boolean;
   }
 
 export default function Slider(props: SliderProps) {
@@ -98,6 +99,9 @@ export default function Slider(props: SliderProps) {
   if (window.innerWidth > 1600) {
     perView = 5;
     sliderSpeed = 2;
+  }
+  if (props.isReverse) {
+    sliderSpeed = sliderSpeed * -1;
   }
   const [sliderRef] = useKeenSlider<HTMLDivElement>({
     loop: true,
@@ -121,12 +125,12 @@ export default function Slider(props: SliderProps) {
   return (
     <div ref={sliderRef} class="keen-slider flex w-screen overflow-hidden">
         {props.apps.map((app) => (
-              <div class="rounded-lg flex flex-col bg-gray-100 dark:bg-gray-700 p-4 w-64 h-32 justify-center items-center m-4 keen-slider__slide">
+              <div class="rounded-lg flex flex-col bg-gray-100 dark:bg-gray-700 p-4 w-64 h-42 justify-center items-center m-4 keen-slider__slide">
                 <img
                   src={`https://runcitadel.github.io/old-apps-gallery/${app.id}/icon.svg`}
                   class="h-16 w-16 rounded-xl"
                 />
-                <h4>{app.name}</h4>
+                <h4 class="text-xl font-bold mt-3 mb-2">{app.name}</h4>
                 <h5>{app.tagline}</h5>
               </div>
             ))}
