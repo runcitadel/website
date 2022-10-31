@@ -85,8 +85,9 @@ export default function Home(ctx: PageProps<HomeProps>) {
         <link
           rel="stylesheet"
           src="https://esm.sh/keen-slider/keen-slider.min.css"
+          type="text/css"
         />
-        <link rel="stylesheet" src="/slider.css" />
+        <link rel="stylesheet" src="/style.css" type="text/css" />
       </Head>
       <div class="dark:bg-gray-800 dark:text-white">
         <div class="absolute top-0 right-0 left-0">
@@ -98,17 +99,17 @@ export default function Home(ctx: PageProps<HomeProps>) {
         >
           <img
             src="/citadel-logo-gradient-overlap.png"
-            class="h-64 ml-auto mr-auto lg:h-96 mt-4"
+            class="h-64 ml-auto mr-auto mt-4 lg:h-5/6 hover"
           />
           <div class="m-4 ml-auto">
-            <h1 class="text-5xl mb-4">
-              <b>Your</b> personal server
+            <h1 class="text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl mb-4">
+              Your personal server
             </h1>
-            <h3 class="mb-12">
+            <h3 class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
               Take control of your data and run your personal server, together
               with a Bitcoin Lightning node, in your home.
             </h3>
-            <a class="mt-12 rounded bg-blue-600 p-2" href="#install">
+            <a class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900" href="#install">
               Get started
             </a>
           </div>
