@@ -15,6 +15,8 @@ interface HomeProps {
   }[];
 }
 
+const ignoredApps = ["btc-rpc-explorer-public", "btc-rpc-explorer-public-fast"]
+
 export const handler: Handlers<HomeProps | null> = {
   async GET(_, ctx) {
     const octokitOptions = Deno.env.get("GITHUB_TOKEN")
@@ -34,7 +36,7 @@ export const handler: Handlers<HomeProps | null> = {
       path: "apps"
     })).data as components["schemas"]["content-directory"];
     const allApps = shuffle([...nonfreeApps, ...apps]);
-    const simplified_apps = allApps.map(async (app) => {
+    const simplified_apps = allApps.filter((app) => !ignoredApps.includes(app.name)).map(async (app) => {
       const repo = app.html_url!.replace("https://github.com/", "").split("/").slice(0, 2).join("/");
       const app_file = await fetch(`https://raw.githubusercontent.com/${repo}/v4-stable/apps/${app.name}/app.yml`);
       let app_data = parse(await app_file.text()) as any;
