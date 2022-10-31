@@ -99,7 +99,7 @@ export default function Home(ctx: PageProps<HomeProps>) {
         >
           <img
             src="/citadel-logo-gradient-overlap.png"
-            class="h-64 ml-auto mr-auto mt-4 lg:h-5/6 hover"
+            class="h-64 ml-auto mr-auto mt-4 lg:h-4/6 xl:h-5/6 hover"
           />
           <div class="m-4 ml-auto">
             <h1 class="text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl mb-4">
