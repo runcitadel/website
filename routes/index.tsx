@@ -84,10 +84,10 @@ export default function Home(ctx: PageProps<HomeProps>) {
         <title>Citadel</title>
         <link
           rel="stylesheet"
-          src="https://esm.sh/keen-slider/keen-slider.min.css"
+          href="https://esm.sh/keen-slider/keen-slider.min.css"
           type="text/css"
         />
-        <link rel="stylesheet" src="/style.css" type="text/css" />
+        <link rel="stylesheet" href="/style.css" type="text/css" />
       </Head>
       <div class="dark:bg-gray-800 dark:text-white">
         <div class="absolute top-0 right-0 left-0">
