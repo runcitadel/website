@@ -174,7 +174,7 @@ export default function Home(ctx: PageProps<HomeProps>) {
           </figure>*/
           }
         </div>
-        <div class="mt-8 p-4 flex flex-col justify-center items-center text-center ">
+        <div class="mt-8 p-4 flex flex-col justify-center items-center text-center">
           <Slider
             apps={ctx.data.apps.slice(0, Math.floor(ctx.data.apps.length / 2))}
             isReverse
@@ -196,10 +196,10 @@ export default function Home(ctx: PageProps<HomeProps>) {
             )}
           />
         </div>
-        <div class="mt-4 px-4 py-12 flex flex-col justify-center items-center text-center bg-purple-700 text-white">
+        <div class="mt-4 px-4 py-12 flex flex-col justify-center items-center text-center bg-indigo-700 text-white">
           <h2 class="font-bold text-5xl mb-2">A modern Umbrel alternative</h2>
           <h4 class="text-2xl mb-6">
-            100% transparent and a lot more up-to-data
+            100% transparent and a lot more up-to-date
           </h4>
           <p class="max-w-screen-md text-center">
             Citadel started out as a modified version of Umbrel. Our goal was to
@@ -214,15 +214,25 @@ export default function Home(ctx: PageProps<HomeProps>) {
               class="text-underline text-blue-700 dark:text-blue-400"
             >
               a lot of apps are outdated
-            </a>. On Citadel, app updates are made available almost daily (If there are any available upstream).
+            </a>. On Citadel, app updates are made available almost daily (If
+            there are any updates available upstream).
           </p>
         </div>
-        <div class="mt-4 px-4 py-12 flex flex-col justify-center items-center text-center bg-gray-200 dark:bg-gray-700">
+        <div class="mt-4 px-4 flex flex-col justify-center items-center text-center">
           <h2 class="font-bold text-5xl mb-2">Easy to use</h2>
           <h4 class="text-2xl mb-6">
             With a simple user interface, we make it easy to use your node.
           </h4>
           <img class="w-5/6" src="/dashboard.png" />
+        </div>
+        <div class="mt-8 p-4 flex flex-col justify-center items-center text-center" id="install">
+          <h2 class="font-bold text-5xl mb-2 mt-8">Get started</h2>
+          <h4 class="text-2xl mb-6">
+            Build your own, or purchase a prebuilt node.
+          </h4>
+          <p class="mb-8">
+            There are multiple ways to build your own Citadel. We've also partnered with DTV Electronics to offer prebuilt nodes you can just plug in and use immediately.
+          </p>
         </div>
       </div>
     </>
