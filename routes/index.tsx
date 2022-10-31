@@ -175,6 +175,13 @@ export default function Home(ctx: PageProps<HomeProps>) {
           </p>
           <Slider apps={ctx.data.apps.slice(Math.floor(ctx.data.apps.length / 2), ctx.data.apps.length - 1)} />
         </div>
+        <div class="mt-4 px-4 py-12 flex flex-col justify-center items-center text-center bg-gray-200 dark:bg-gray-700">
+          <h2 class="font-bold text-5xl mb-2">Easy to use</h2>
+          <h4 class="text-2xl mb-6">
+            With a simple user interface, we make it easy to use your node.
+          </h4>
+          <img class="w-5/6" src="/dashboard.png" />
+        </div>
       </div>
     </>
   );
