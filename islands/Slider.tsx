@@ -81,23 +81,41 @@ interface SliderProps {
   }
 
 export default function Slider(props: SliderProps) {
+  let sliderSpeed = 2;
+  let perView = 1;
+  if (window.innerWidth > 600) {
+    perView = 2;
+    sliderSpeed = 1;
+  }
+  if (window.innerWidth > 900) {
+    perView = 3;
+    sliderSpeed = 1;
+  }
+  if (window.innerWidth > 1200) {
+    perView = 4;
+    sliderSpeed = 2;
+  }
+  if (window.innerWidth > 1600) {
+    perView = 5;
+    sliderSpeed = 2;
+  }
   const [sliderRef] = useKeenSlider<HTMLDivElement>({
     loop: true,
     renderMode: "performance",
     drag: false,
     slides: {
         spacing: 16,
-        perView: 3,
+        perView,
     },
 
     created(s) {
-      s.moveToIdx(2, true, animation)
+      s.moveToIdx(sliderSpeed, true, animation)
     },
     updated(s) {
-      s.moveToIdx(s.track.details.abs + 2, true, animation)
+      s.moveToIdx(s.track.details.abs + sliderSpeed, true, animation)
     },
     animationEnded(s) {
-      s.moveToIdx(s.track.details.abs + 2, true, animation)
+      s.moveToIdx(s.track.details.abs + sliderSpeed, true, animation)
     },
   })
   return (
