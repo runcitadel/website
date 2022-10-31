@@ -15,7 +15,7 @@ interface HomeProps {
   }[];
 }
 
-const ignoredApps = ["btc-rpc-explorer-public", "btc-rpc-explorer-public-fast"]
+const ignoredApps = ["btc-rpc-explorer-public", "btc-rpc-explorer-public-fast"];
 
 export const handler: Handlers<HomeProps | null> = {
   async GET(_, ctx) {
@@ -28,20 +28,27 @@ export const handler: Handlers<HomeProps | null> = {
     const apps = (await octokit.rest.repos.getContent({
       repo: "apps",
       owner: "runcitadel",
-      path: "apps"
+      path: "apps",
     })).data as components["schemas"]["content-directory"];
     const nonfreeApps = (await octokit.rest.repos.getContent({
       repo: "apps-nonfree",
       owner: "runcitadel",
-      path: "apps"
+      path: "apps",
     })).data as components["schemas"]["content-directory"];
     const allApps = shuffle([...nonfreeApps, ...apps]);
-    const simplified_apps = allApps.filter((app) => !ignoredApps.includes(app.name)).map(async (app) => {
-      const repo = app.html_url!.replace("https://github.com/", "").split("/").slice(0, 2).join("/");
-      const app_file = await fetch(`https://raw.githubusercontent.com/${repo}/v4-stable/apps/${app.name}/app.yml`);
+    const simplified_apps = allApps.filter((app) =>
+      !ignoredApps.includes(app.name)
+    ).map(async (app) => {
+      const repo = app.html_url!.replace("https://github.com/", "").split("/")
+        .slice(0, 2).join("/");
+      const app_file = await fetch(
+        `https://raw.githubusercontent.com/${repo}/v4-stable/apps/${app.name}/app.yml`,
+      );
       let app_data = parse(await app_file.text()) as any;
       if (!app_data?.metadata?.name || !app_data?.metadata?.tagline) {
-        const app_file = await fetch(`https://raw.githubusercontent.com/${repo}/v4-stable/apps/${app.name}/app.yml.jinja`);
+        const app_file = await fetch(
+          `https://raw.githubusercontent.com/${repo}/v4-stable/apps/${app.name}/app.yml.jinja`,
+        );
         const text = await app_file.text();
         const metadata = {
           name: "",
@@ -88,7 +95,10 @@ export default function Home(ctx: PageProps<HomeProps>) {
           type="text/css"
         />
         <link rel="stylesheet" href="/style.css" type="text/css" />
-        <meta name="description" content="Citadel is an open source personal server and Bitcoin node to run in your home." />
+        <meta
+          name="description"
+          content="Citadel is an open source personal server and Bitcoin node to run in your home."
+        />
       </Head>
       <div class="dark:bg-gray-800 dark:text-white">
         <div class="absolute top-0 right-0 left-0">
@@ -110,7 +120,10 @@ export default function Home(ctx: PageProps<HomeProps>) {
               Take control of your data and run your personal server, together
               with a Bitcoin Lightning node, in your home.
             </h3>
-            <a class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900" href="#install">
+            <a
+              class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
+              href="#install"
+            >
               Get started
             </a>
           </div>
@@ -162,7 +175,10 @@ export default function Home(ctx: PageProps<HomeProps>) {
           }
         </div>
         <div class="mt-8 p-4 flex flex-col justify-center items-center text-center ">
-          <Slider apps={ctx.data.apps.slice(0, Math.floor(ctx.data.apps.length / 2))} isReverse />
+          <Slider
+            apps={ctx.data.apps.slice(0, Math.floor(ctx.data.apps.length / 2))}
+            isReverse
+          />
           <h2 class="font-bold text-5xl mb-2 mt-8">Unlimited possibilities</h2>
           <h4 class="text-2xl mb-6">
             With our app store, you can run literally anything on your node.
@@ -173,7 +189,33 @@ export default function Home(ctx: PageProps<HomeProps>) {
             and you can install it. This even includes app stores built for
             Umbrel!
           </p>
-          <Slider apps={ctx.data.apps.slice(Math.floor(ctx.data.apps.length / 2), ctx.data.apps.length - 1)} />
+          <Slider
+            apps={ctx.data.apps.slice(
+              Math.floor(ctx.data.apps.length / 2),
+              ctx.data.apps.length - 1,
+            )}
+          />
+        </div>
+        <div class="mt-4 px-4 py-12 flex flex-col justify-center items-center text-center bg-purple-700 text-white">
+          <h2 class="font-bold text-5xl mb-2">A modern Umbrel alternative</h2>
+          <h4 class="text-2xl mb-6">
+            100% transparent and a lot more up-to-data
+          </h4>
+          <p class="max-w-screen-md text-center">
+            Citadel started out as a modified version of Umbrel. Our goal was to
+            keep the oiginal idea of Bitcoin: Build in the open. Unlike Umbrel,
+            which only publishes their code after releases, we stay transparent
+            with what we do and allow you to use our code for any purpose.
+          </p>
+          <p class="max-w-screen-md text-center">
+            We also ensure all of our apps are up to date. On Umbrel{" "}
+            <a
+              href="https://upbrel.deno.dev"
+              class="text-underline text-blue-700 dark:text-blue-400"
+            >
+              a lot of apps are outdated
+            </a>. On Citadel, app updates are made available almost daily (If there are any available upstream).
+          </p>
         </div>
       </div>
     </>
