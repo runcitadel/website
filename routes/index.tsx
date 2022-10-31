@@ -238,7 +238,7 @@ export default function Home(ctx: PageProps<HomeProps>) {
             partnered with DTV Electronics to offer prebuilt nodes you can just
             plug in and use immediately.
           </p>
-          <div class="flex flex-col w-screen lg:w-5/6">
+          <div class="flex flex-row w-screen lg:w-5/6">
             <div class="bg-gray-200 dark:bg-gray-700 p-4 m-2 rounded max-w-lg">
               <h2 class="font-bold text-2xl">Raspberry Pi 4</h2>
               <h4 class="text-lg">The most popular setup</h4>
