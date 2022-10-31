@@ -225,14 +225,51 @@ export default function Home(ctx: PageProps<HomeProps>) {
           </h4>
           <img class="w-5/6" src="/dashboard.png" />
         </div>
-        <div class="mt-8 p-4 flex flex-col justify-center items-center text-center" id="install">
+        <div
+          class="mt-8 p-4 flex flex-col justify-center items-center text-center"
+          id="install"
+        >
           <h2 class="font-bold text-5xl mb-2 mt-8">Get started</h2>
           <h4 class="text-2xl mb-6">
             Build your own, or purchase a prebuilt node.
           </h4>
           <p class="mb-8">
-            There are multiple ways to build your own Citadel. We've also partnered with DTV Electronics to offer prebuilt nodes you can just plug in and use immediately.
+            There are multiple ways to build your own Citadel. We've also
+            partnered with DTV Electronics to offer prebuilt nodes you can just
+            plug in and use immediately.
           </p>
+          <div class="flex flex-col">
+            <div class="bg-gray-200 dark:bg-gray-700 p-4 m-2 rounded max-w-lg">
+              <h2 class="font-bold text-2xl">Raspberry Pi 4</h2>
+              <h4 class="text-lg">The most popular setup</h4>
+              <p>
+                This is simple to configure, and used by most members of the
+                community. However, it is more likely to run into hardware
+                issues in the future, so we recommend other options.
+              </p>
+              <ul>
+                <li>Raspberry Pi 4</li>
+                <li>microSD Card</li>
+                <li>1TB SSD</li>
+                <li>Power Supply</li>
+                <li>Case</li>
+              </ul>
+            </div>
+            <div class="bg-gray-200 dark:bg-gray-700 p-4 m-2 rounded max-w-lg">
+              <h2 class="font-bold text-2xl">Basic CM4 setup</h2>
+              <h4 class="text-lg">More advanced and stable setup</h4>
+              <p>
+                This is a bit harder to configure, but will be faster and less likely to cause issues in the future.
+                </p>
+               <ul>
+                <li>Raspberry Pi CM4</li>
+                <li>microSD Card</li>
+                <li>1TB NVME SSD</li>
+                <li>CM4 IO Board</li>
+                <li>M.2 to PCIe Adapter</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </>
