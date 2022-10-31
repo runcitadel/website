@@ -61,7 +61,6 @@ export const handler: Handlers<HomeProps | null> = {
           }
         }
         app_data = { metadata };
-        console.log(metadata);
       }
       return {
         name: app_data?.metadata?.name || app.name,
