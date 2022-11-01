@@ -246,6 +246,8 @@ export default function Home(ctx: PageProps<HomeProps>) {
                 This is simple to configure, and used by most members of the
                 community.
               </p>
+              <h4>Estimated cost: <b>$200</b></h4>
+              <h4 class="text-lg mt-5">Requirements:</h4>
               <ul>
                 <li>Raspberry Pi 4</li>
                 <li>microSD Card</li>
@@ -262,8 +264,10 @@ export default function Home(ctx: PageProps<HomeProps>) {
                 This is a bit harder to configure, but will be faster and less
                 likely to cause issues in the future.
               </p>
+              <h4>Estimated cost: <b>$230</b></h4>
+              <h4 class="text-lg mt-5">Requirements:</h4>
               <ul>
-                <li>Raspberry Pi CM4</li>
+                <li>Raspberry Pi CM4 Lite</li>
                 <li>microSD Card</li>
                 <li>1TB NVME SSD</li>
                 <li>CM4 IO Board</li>
@@ -277,8 +281,10 @@ export default function Home(ctx: PageProps<HomeProps>) {
                 This is harder to configure, but will be faster and also work
                 during power outages. It also supports PoE.
               </p>
+              <h4>Estimated cost: <b>$270</b></h4>
+              <h4 class="text-lg mt-5">Requirements:</h4>
               <ul>
-                <li>Raspberry Pi CM4</li>
+                <li>Raspberry Pi CM4 Lite</li>
                 <li>microSD Card</li>
                 <li>1TB NVME SSD</li>
                 <li><a href="https://www.waveshare.com/cm4-poe-ups-base-en.htm?sku=22849">CM4 PoE board kit</a> (Make sure to choose the correct plug)</li>
@@ -291,6 +297,8 @@ export default function Home(ctx: PageProps<HomeProps>) {
               <p>
                 Prebuilt nodes from DTV Electronics make setting up your node even easier.
               </p>
+              <h4>Estimated cost: <b>$???</b></h4>
+              <h4 class="text-lg mt-5">Requirements:</h4>
               <ul>
                 <li><a href="https://dtvelectronics.com">A BitPiRat with Citadel</a></li>
               </ul>
