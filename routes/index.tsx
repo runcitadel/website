@@ -196,7 +196,7 @@ export default function Home(ctx: PageProps<HomeProps>) {
             )}
           />
         </div>
-        <div class="mt-4 px-4 py-12 flex flex-col justify-center items-center text-center bg-indigo-700 text-white">
+        <div class="mt-4 px-4 pt-10 pb-6 flex flex-col justify-center items-center text-center bg-indigo-700 text-white">
           <h2 class="font-bold text-5xl mb-2">A modern Umbrel alternative</h2>
           <h4 class="text-2xl mb-6">
             100% transparent and a lot more up-to-date
