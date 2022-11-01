@@ -49,7 +49,7 @@ export const handler: Handlers<HomeProps | null> = {
       let app_data = parse(await app_file.text()) as any;
       if (!app_data?.metadata?.name || !app_data?.metadata?.tagline) {
         const app_file = await fetch(
-          `https://raw.githubusercontent.com/${repo}/v4-stable/apps/${app.name}/app.yml.jinja`,
+          `https://raw.githubusercontent.com/${repo}/apps/${app.name}/app.yml.jinja`,
         );
         const text = await app_file.text();
         const metadata = {
