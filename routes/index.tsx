@@ -244,13 +244,13 @@ export default function Home(ctx: PageProps<HomeProps>) {
               <h4 class="text-lg">The most popular setup</h4>
               <p>
                 This is simple to configure, and used by most members of the
-                community. However, it is more likely to run into hardware
-                issues in the future, so we recommend other options.
+                community.
               </p>
               <ul>
                 <li>Raspberry Pi 4</li>
                 <li>microSD Card</li>
-                <li>1TB SSD</li>
+                <li>1TB SATA SSD</li>
+                <li>USB to SATA adapter</li>
                 <li>Power Supply</li>
                 <li>Case</li>
               </ul>
@@ -259,14 +259,40 @@ export default function Home(ctx: PageProps<HomeProps>) {
               <h2 class="font-bold text-2xl">Basic CM4 setup</h2>
               <h4 class="text-lg">More advanced and stable setup</h4>
               <p>
-                This is a bit harder to configure, but will be faster and less likely to cause issues in the future.
-                </p>
-               <ul>
+                This is a bit harder to configure, but will be faster and less
+                likely to cause issues in the future.
+              </p>
+              <ul>
                 <li>Raspberry Pi CM4</li>
                 <li>microSD Card</li>
                 <li>1TB NVME SSD</li>
                 <li>CM4 IO Board</li>
                 <li>M.2 to PCIe Adapter</li>
+              </ul>
+            </div>
+            <div class="bg-gray-200 dark:bg-gray-700 p-4 m-2 rounded max-w-lg">
+              <h2 class="font-bold text-2xl">Advanced CM4 setup</h2>
+              <h4 class="text-lg">Even more advanced and stable setup</h4>
+              <p>
+                This is harder to configure, but will be faster and also work
+                during power outages. It also supports PoE.
+              </p>
+              <ul>
+                <li>Raspberry Pi CM4</li>
+                <li>microSD Card</li>
+                <li>1TB NVME SSD</li>
+                <li><a href="https://www.waveshare.com/cm4-poe-ups-base-en.htm?sku=22849">CM4 PoE board kit</a> (Make sure to choose the correct plug)</li>
+                <li><a href="https://www.amazon.com/dp/B0BKZZKXJM/">parallel 18650 Li-ion battery</a></li>
+              </ul>
+            </div>
+            <div class="bg-gray-200 dark:bg-gray-700 p-4 m-2 rounded max-w-lg">
+              <h2 class="font-bold text-2xl">BitPiRat</h2>
+              <h4 class="text-lg">The easiest way</h4>
+              <p>
+                Prebuilt nodes from DTV Electronics make setting up your node even easier.
+              </p>
+              <ul>
+                <li><a href="https://dtvelectronics.com">A BitPiRat with Citadel</a></li>
               </ul>
             </div>
           </div>
