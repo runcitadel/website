@@ -30,6 +30,7 @@ export const handler: Handlers<HomeProps | null> = {
       repo: "apps",
       owner: "runcitadel",
       path: "apps",
+      ref: "0.1.0"
     })).data as components["schemas"]["content-directory"];
     const nonfreeApps = (await octokit.rest.repos.getContent({
       repo: "apps-nonfree",
@@ -40,10 +41,10 @@ export const handler: Handlers<HomeProps | null> = {
     const simplified_apps = allApps.filter((app) =>
       !ignoredApps.includes(app.name)
     ).map(async (app) => {
-      const repo = app.html_url!.replace("https://github.com/", "").split("/")
-        .slice(0, 2).join("/");
+      const split = app.html_url!.replace("https://github.com/", "").split("/");
+      const repo = [split[0], split[1], split[3]].join("/");
       const app_file = await fetch(
-        `https://raw.githubusercontent.com/${repo}/v4-stable/apps/${app.name}/app.yml`,
+        `https://raw.githubusercontent.com/${repo}/apps/${app.name}/app.yml`,
       );
       let app_data = parse(await app_file.text()) as any;
       if (!app_data?.metadata?.name || !app_data?.metadata?.tagline) {
@@ -216,6 +217,16 @@ export default function Home(ctx: PageProps<HomeProps>) {
             </a>. On Citadel, app updates are made available almost daily (If
             there are any updates available upstream).
           </p>
+          <h2 class="font-bold text-2xl mb-2 mt-8">Upgrade to Citadel</h2>
+          <h4 class="text-lg mb-6">
+            Join our waitlist to get notified when you can upgrade your node
+          </h4>
+          <p class="max-w-screen-md text-center mb-4">
+            We're planning to make it possible to switch from Umbrel to Citadel.
+            Join our waitlist to get notified when you can upgrade your node.
+          </p>
+
+          <MailerLite submitUrl="https://assets.mailerlite.com/jsonp/208143/forms/70567193145771829/subscribe" />
         </div>
         <div class="mt-8 px-4 flex flex-col justify-center items-center text-center">
           <h2 class="font-bold text-5xl mb-2">Easy to use</h2>
