@@ -6,6 +6,7 @@ import type { components } from "https://cdn.skypack.dev/@octokit/openapi-types?
 import Slider from "../islands/Slider.tsx";
 import shuffle from "https://cdn.skypack.dev/lodash/shuffle?dts";
 import { parse } from "https://deno.land/std@0.161.0/encoding/yaml.ts";
+import MailerLite from "../islands/MailerLite.tsx";
 
 interface HomeProps {
   apps: {
@@ -238,6 +239,16 @@ export default function Home(ctx: PageProps<HomeProps>) {
             partnered with DTV Electronics to offer prebuilt nodes you can just
             plug in and use immediately.
           </p>
+          <div class="p-4 bg-yellow-200 rounded-lg mb-4 text-black">
+            Having trouble finding Raspberry Pi parts?{" "}
+            <a
+              class="text-underline text-blue-700"
+              href="https://rpilocator.com/"
+            >
+              rpilocator
+            </a>{" "}
+            may be able to help you.
+          </div>
           <div class="flex flex-row w-screen lg:w-5/6">
             <div class="bg-gray-200 dark:bg-gray-700 p-4 m-2 rounded max-w-lg">
               <h2 class="font-bold text-2xl">Raspberry Pi 4</h2>
@@ -246,7 +257,9 @@ export default function Home(ctx: PageProps<HomeProps>) {
                 This is simple to configure, and used by most members of the
                 community.
               </p>
-              <h4>Estimated cost: <b>$200</b></h4>
+              <h4>
+                Estimated cost: <b>$200</b>
+              </h4>
               <h4 class="text-lg mt-5">Requirements:</h4>
               <ul>
                 <li>Raspberry Pi 4</li>
@@ -264,7 +277,9 @@ export default function Home(ctx: PageProps<HomeProps>) {
                 This is a bit harder to configure, but will be faster and less
                 likely to cause issues in the future.
               </p>
-              <h4>Estimated cost: <b>$230</b></h4>
+              <h4>
+                Estimated cost: <b>$230</b>
+              </h4>
               <h4 class="text-lg mt-5">Requirements:</h4>
               <ul>
                 <li>Raspberry Pi CM4 Lite</li>
@@ -281,29 +296,60 @@ export default function Home(ctx: PageProps<HomeProps>) {
                 This is harder to configure, but will be faster and also work
                 during power outages. It also supports PoE.
               </p>
-              <h4>Estimated cost: <b>$270</b></h4>
+              <h4>
+                Estimated cost: <b>$270</b>
+              </h4>
               <h4 class="text-lg mt-5">Requirements:</h4>
               <ul>
                 <li>Raspberry Pi CM4 Lite</li>
                 <li>microSD Card</li>
                 <li>1TB NVME SSD</li>
-                <li><a href="https://www.waveshare.com/cm4-poe-ups-base-en.htm?sku=22849">CM4 PoE board kit</a> (Make sure to choose the correct plug)</li>
-                <li><a href="https://www.amazon.com/dp/B0BKZZKXJM/">parallel 18650 Li-ion battery</a></li>
+                <li>
+                  <a href="https://www.waveshare.com/cm4-poe-ups-base-en.htm?sku=22849">
+                    CM4 PoE board kit
+                  </a>{" "}
+                  (Make sure to choose the correct plug)
+                </li>
+                <li>
+                  <a href="https://www.amazon.com/dp/B0BKZZKXJM/">
+                    parallel 18650 Li-ion battery
+                  </a>
+                </li>
               </ul>
             </div>
             <div class="bg-gray-200 dark:bg-gray-700 p-4 m-2 rounded max-w-lg">
               <h2 class="font-bold text-2xl">BitPiRat</h2>
               <h4 class="text-lg">The easiest way</h4>
               <p>
-                Prebuilt nodes from DTV Electronics make setting up your node even easier.
+                Prebuilt nodes from DTV Electronics make setting up your node
+                even easier.
               </p>
-              <h4>Estimated cost: <b>$???</b></h4>
+              <h4>
+                Estimated cost: <b>$???</b>
+              </h4>
               <h4 class="text-lg mt-5">Requirements:</h4>
               <ul>
-                <li><a href="https://dtvelectronics.com">A BitPiRat with Citadel</a></li>
+                <li>
+                  <a href="https://dtvelectronics.com">
+                    A BitPiRat with Citadel
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
+        </div>
+        <div class="mt-4 px-4 py-12 flex flex-col justify-center items-center text-center bg-gray-200 dark:bg-gray-700">
+          <h2 class="font-bold text-5xl mb-2">Join the waitlist</h2>
+          <h4 class="text-2xl mb-6">
+            Get access to Citadel as soon as we launch
+          </h4>
+          <p class="max-w-screen-md text-center mb-4">
+            Citadel is currently in beta and we do not have an install guide
+            yet. However, you can join our waitlist to get access as soon as we
+            launch.
+          </p>
+
+          <MailerLite submitUrl="https://assets.mailerlite.com/jsonp/208143/forms/70562846841243609/subscribe" />
         </div>
       </div>
     </>
