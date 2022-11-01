@@ -7,6 +7,15 @@ import Slider from "../islands/Slider.tsx";
 import shuffle from "https://cdn.skypack.dev/lodash/shuffle?dts";
 import { parse } from "https://deno.land/std@0.161.0/encoding/yaml.ts";
 import MailerLite from "../islands/MailerLite.tsx";
+import { connect } from "https://deno.land/x/redis@v0.26.0/mod.ts";
+
+const cache = await connect({
+  name: Deno.env.get("REDIS_DATABASE"),
+  port: Number(Deno.env.get("REDIS_PORT")),
+  hostname: Deno.env.get("REDIS_HOST") as string,
+  username: Deno.env.get("REDIS_USERNAME"),
+  password: Deno.env.get("REDIS_PASSWORD"),
+});
 
 interface HomeProps {
   apps: {
@@ -20,68 +29,75 @@ const ignoredApps = ["btc-rpc-explorer-public", "btc-rpc-explorer-public-fast"];
 
 export const handler: Handlers<HomeProps | null> = {
   async GET(_, ctx) {
-    const octokitOptions = Deno.env.get("GITHUB_TOKEN")
-      ? {
-        auth: Deno.env.get("GITHUB_TOKEN"),
-      }
-      : {};
-    const octokit = new Octokit(octokitOptions);
-    const apps = (await octokit.rest.repos.getContent({
-      repo: "apps",
-      owner: "runcitadel",
-      path: "apps",
-      ref: "0.1.0"
-    })).data as components["schemas"]["content-directory"];
-    const nonfreeApps = (await octokit.rest.repos.getContent({
-      repo: "apps-nonfree",
-      owner: "runcitadel",
-      path: "apps",
-    })).data as components["schemas"]["content-directory"];
-    const allApps = shuffle([...nonfreeApps, ...apps]);
-    const simplified_apps = allApps.filter((app) =>
-      !ignoredApps.includes(app.name)
-    ).map(async (app) => {
-      const split = app.html_url!.replace("https://github.com/", "").split("/");
-      const repo = [split[0], split[1], split[3]].join("/");
-      const app_file = await fetch(
-        `https://raw.githubusercontent.com/${repo}/apps/${app.name}/app.yml`,
-      );
-      let app_data = parse(await app_file.text()) as any;
-      if (!app_data?.metadata?.name || !app_data?.metadata?.tagline) {
-        const app_file = await fetch(
-          `https://raw.githubusercontent.com/${repo}/apps/${app.name}/app.yml.jinja`,
-        );
-        const text = await app_file.text();
-        const metadata = {
-          name: "",
-          tagline: "",
-        };
-        for (const line of text.split("\n")) {
-          const _line = line.trim();
-          if (_line.startsWith("name: ")) {
-            metadata.name = line.replace("name: ", "").trim();
-            if (metadata.tagline) {
-              break;
-            }
-          }
-          if (_line.startsWith("tagline: ")) {
-            metadata.tagline = line.replace("tagline: ", "").trim();
-            if (metadata.name) {
-              break;
-            }
-          }
+    let parsed_apps = await cache.get("available_apps");
+    if (!parsed_apps) {
+      const octokitOptions = Deno.env.get("GITHUB_TOKEN")
+        ? {
+          auth: Deno.env.get("GITHUB_TOKEN"),
         }
-        app_data = { metadata };
-      }
-      return {
-        name: app_data?.metadata?.name || app.name,
-        id: app.name,
-        tagline: app_data?.metadata?.tagline || "A cool app",
-      };
-    });
-    apps;
+        : {};
+      const octokit = new Octokit(octokitOptions);
+      const apps = (await octokit.rest.repos.getContent({
+        repo: "apps",
+        owner: "runcitadel",
+        path: "apps",
+        ref: "0.1.0"
+      })).data as components["schemas"]["content-directory"];
+      const nonfreeApps = (await octokit.rest.repos.getContent({
+        repo: "apps-nonfree",
+        owner: "runcitadel",
+        path: "apps",
+      })).data as components["schemas"]["content-directory"];
+      const allApps = shuffle([...nonfreeApps, ...apps]);
+      const simplified_apps = allApps.filter((app) =>
+        !ignoredApps.includes(app.name)
+      ).map(async (app) => {
+        const split = app.html_url!.replace("https://github.com/", "").split("/");
+        const repo = [split[0], split[1], split[3]].join("/");
+        const app_file = await fetch(
+          `https://raw.githubusercontent.com/${repo}/apps/${app.name}/app.yml`,
+        );
+        let app_data = parse(await app_file.text()) as any;
+        if (!app_data?.metadata?.name || !app_data?.metadata?.tagline) {
+          const app_file = await fetch(
+            `https://raw.githubusercontent.com/${repo}/apps/${app.name}/app.yml.jinja`,
+          );
+          const text = await app_file.text();
+          const metadata = {
+            name: "",
+            tagline: "",
+          };
+          for (const line of text.split("\n")) {
+            const _line = line.trim();
+            if (_line.startsWith("name: ")) {
+              metadata.name = line.replace("name: ", "").trim();
+              if (metadata.tagline) {
+                break;
+              }
+            }
+            if (_line.startsWith("tagline: ")) {
+              metadata.tagline = line.replace("tagline: ", "").trim();
+              if (metadata.name) {
+                break;
+              }
+            }
+          }
+          app_data = { metadata };
+        }
+        return {
+          name: app_data?.metadata?.name || app.name,
+          id: app.name,
+          tagline: app_data?.metadata?.tagline || "A cool app",
+        };
+      });
+      parsed_apps = await Promise.all(simplified_apps);
+
+      await cache.set("available_apps", JSON.stringify(parsed_apps), {
+        ex: 60 * 5,
+      });
+    }
     return ctx.render({
-      apps: await Promise.all(simplified_apps),
+      apps: parsed_apps,
     });
   },
 };
