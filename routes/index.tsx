@@ -30,7 +30,9 @@ const ignoredApps = ["btc-rpc-explorer-public", "btc-rpc-explorer-public-fast"];
 export const handler: Handlers<HomeProps | null> = {
   async GET(_, ctx) {
     let parsed_apps = await cache.get("available_apps");
-    if (!parsed_apps) {
+    if (parsed_apps) {
+      parsed_apps = JSON.parse(parsed_apps);
+    } else {
       const octokitOptions = Deno.env.get("GITHUB_TOKEN")
         ? {
           auth: Deno.env.get("GITHUB_TOKEN"),
