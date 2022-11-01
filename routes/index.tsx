@@ -154,8 +154,7 @@ export default function Home(ctx: PageProps<HomeProps>) {
               view our finances
             </a>.
           </p>
-          {
-            /*<figure class="max-w-screen-md text-center">
+          <figure class="max-w-screen-md text-center">
             <blockquote class="p-4 my-4 bg-gray-50 border-l-4 border-gray-300 dark:border-gray-500 dark:bg-gray-800">
               Bitcoin is an ecosystem built on a foundation of free and open
               source software and ideas. Progress in Bitcoin is made as we build
@@ -172,8 +171,7 @@ export default function Home(ctx: PageProps<HomeProps>) {
                 </a>
               </cite>
             </figcaption>
-          </figure>*/
-          }
+          </figure>
         </div>
         <div class="mt-8 p-4 flex flex-col justify-center items-center text-center">
           <Slider
@@ -219,7 +217,7 @@ export default function Home(ctx: PageProps<HomeProps>) {
             there are any updates available upstream).
           </p>
         </div>
-        <div class="mt-4 px-4 flex flex-col justify-center items-center text-center">
+        <div class="mt-8 px-4 flex flex-col justify-center items-center text-center">
           <h2 class="font-bold text-5xl mb-2">Easy to use</h2>
           <h4 class="text-2xl mb-6">
             With a simple user interface, we make it easy to use your node.
