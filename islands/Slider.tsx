@@ -123,11 +123,12 @@ export default function Slider(props: SliderProps) {
     },
   })
   return (
-    <div ref={sliderRef} class="keen-slider flex w-screen overflow-hidden">
+    <div ref={sliderRef} class="keen-slider flex w-screen overflow-hidden" aria-hidden>
         {props.apps.map((app) => (
               <div class="rounded-lg flex flex-col bg-gray-100 dark:bg-gray-700 p-4 w-64 h-48 mx-[8px] justify-center items-center m-4 keen-slider__slide">
                 <img
                   src={`https://runcitadel.github.io/old-apps-gallery/${app.id}/icon.svg`}
+                  alt={`${app.name} logo`}
                   class="h-16 w-16 rounded-xl"
                 />
                 <h4 class="text-xl font-bold mt-3 mb-2">{app.name}</h4>
