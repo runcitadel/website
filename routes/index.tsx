@@ -127,7 +127,7 @@ export default function Home(ctx: PageProps<HomeProps>) {
           id="header"
         >
           <img
-            src="/citadel-logo-gradient-overlap.png"
+            src="/citadel-logo-gradient-overlap.webp"
             class="h-64 ml-auto mr-auto mt-4 lg:h-4/6 xl:h-5/6 hover"
           />
           <div class="m-4 ml-auto">
@@ -253,7 +253,7 @@ export default function Home(ctx: PageProps<HomeProps>) {
           <h4 class="text-2xl mb-6">
             With a simple user interface, we make it easy to use your node.
           </h4>
-          <img class="w-5/6" src="/dashboard.png" />
+          <img class="w-5/6" src="/dashboard.webp" />
         </div>
         <div
           class="mt-8 p-4 flex flex-col justify-center items-center text-center"
