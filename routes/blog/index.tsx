@@ -35,7 +35,7 @@ export default function PostPage(props: PageProps<Data>) {
         <div class="absolute top-0 right-0 left-0">
           <Header />
         </div>
-        <div class="px-4 mx-auto max-w-screen-md min-h-screen">
+        <div class="px-4 mt-12 mx-auto max-w-screen-md min-h-screen">
           <h1 class="font-bold text-5xl pt-20">Citadel blog</h1>
           <p class="inline-block mt-4">
             Insights and updates from the Citadel team
