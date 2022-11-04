@@ -6,11 +6,6 @@ export default function Home() {
     <>
       <Head>
         <title>Not found - Citadel</title>
-        <link
-          rel="stylesheet"
-          href="https://esm.sh/keen-slider/keen-slider.min.css"
-          type="text/css"
-        />
         <link rel="stylesheet" href="/style.css" type="text/css" />
       </Head>
       <div class="dark:bg-gray-800 dark:text-white">

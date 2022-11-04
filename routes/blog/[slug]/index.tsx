@@ -23,11 +23,6 @@ export default function PostPage(props: PageProps<Data>) {
     <>
       <Head>
         <title>{post.title} - Citadel Blog</title>
-        <link
-          rel="stylesheet"
-          href="https://esm.sh/keen-slider/keen-slider.min.css"
-          type="text/css"
-        />
         <link rel="stylesheet" href="/style.css" type="text/css" />
         <meta
           name="description"
