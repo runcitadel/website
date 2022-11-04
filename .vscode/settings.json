@@ -8,5 +8,11 @@
   "editor.suggest.showStatusBar": true,
   "editor.quickSuggestions": {
     "strings": true
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
   }
 }

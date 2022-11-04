@@ -9,13 +9,13 @@ import { parse } from "https://deno.land/std@0.161.0/encoding/yaml.ts";
 import MailerLite from "../islands/MailerLite.tsx";
 import { connect } from "https://deno.land/x/redis@v0.26.0/mod.ts";
 
-const cache = await connect({
+const cache = Deno.env.get("REDIS_DATABASE") ? await connect({
   name: Deno.env.get("REDIS_DATABASE"),
   port: Number(Deno.env.get("REDIS_PORT")),
   hostname: Deno.env.get("REDIS_HOST") as string,
   username: Deno.env.get("REDIS_USERNAME"),
   password: Deno.env.get("REDIS_PASSWORD"),
-});
+}) : null;
 
 interface HomeProps {
   apps: {
@@ -30,7 +30,7 @@ const ignoredApps = ["btc-rpc-explorer-public", "btc-rpc-explorer-public-fast"];
 export const handler: Handlers<HomeProps | null> = {
   async GET(_, ctx) {
     let parsed_apps;
-    const cached_apps = await cache.get("available_apps");
+    const cached_apps = await cache?.get("available_apps");
     if (cached_apps) {
       parsed_apps = JSON.parse(cached_apps);
     } else {
