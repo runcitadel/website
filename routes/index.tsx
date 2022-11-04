@@ -152,13 +152,13 @@ export default function Home(ctx: PageProps<HomeProps>) {
           </div>
         </div>
         <div class="mt-4 px-4 py-12 flex flex-col justify-center items-center text-center bg-gray-200 dark:bg-gray-700">
-          <h2 class="font-bold text-5xl mb-2">Completely transparent</h2>
+          <h2 class="font-bold text-5xl mb-2">100% transparent</h2>
           <h4 class="text-2xl mb-6">
-            Our code, our finances, completely public
+            Our code and our finances, completely public
           </h4>
           <p class="max-w-screen-md text-center">
             At Citadel, we value transparency. Every part of our code, every
-            cent and satoshi we receive, everything we build, is completely
+            cent and satoshi we receive, everything we build and everything else we do is completely
             transparent.
           </p>
           <p>
@@ -237,6 +237,10 @@ export default function Home(ctx: PageProps<HomeProps>) {
               a lot of apps are outdated
             </a>. On Citadel, app updates are made available almost daily (If
             there are any updates available upstream).
+          </p>
+          <p class="max-w-screen-md text-center">
+            Citadel also has a more secure community app store system. We still try to allow importing apps from Umbrel community app stores,
+            but because of Umbrel's insecure design, not all apps can be imported into Citadel's safe app system.
           </p>
           <h2 class="font-bold text-2xl mb-2 mt-8">Upgrade to Citadel</h2>
           <h4 class="text-lg mb-6">
@@ -355,7 +359,7 @@ export default function Home(ctx: PageProps<HomeProps>) {
                 even easier.
               </p>
               <h4>
-                Estimated cost: <b>$???</b>
+                Estimated cost: <b>$300-350</b>
               </h4>
               <h4 class="text-lg mt-5">Requirements:</h4>
               <ul>
