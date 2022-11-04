@@ -96,7 +96,7 @@ export const handler: Handlers<HomeProps | null> = {
       });
       parsed_apps = await Promise.all(simplified_apps);
 
-      await cache.set("available_apps", JSON.stringify(parsed_apps), {
+      await cache?.set("available_apps", JSON.stringify(parsed_apps), {
         ex: 60 * 5,
       });
     }
