@@ -124,7 +124,7 @@ export default function Home(ctx: PageProps<HomeProps>) {
       </Head>
       <div class="dark:bg-gray-800 dark:text-white">
         <div class="absolute top-0 right-0 left-0">
-          <Header class="absolute" />
+          <Header />
         </div>
         <div
           class="p-4 mx-auto dark:bg-gray-800 dark:text-white flex flex-col items-center justify-center min-h-screen text-center lg:text-left lg:flex-row-reverse"

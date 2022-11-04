@@ -31,7 +31,8 @@ export async function loadPost(slug: string): Promise<Post | null> {
 export async function listPosts(): Promise<Post[]> {
   const promises = [];
   for await (const entry of Deno.readDir("./posts")) {
-    promises.push(loadPost(entry.name));
+    if(entry.isDirectory)
+      promises.push(loadPost(entry.name));
   }
   const posts = await Promise.all(promises) as Post[];
   posts.sort((a, b) => b.publishedAt.getTime() - a.publishedAt.getTime());

@@ -15,7 +15,7 @@ export default function Home() {
       </Head>
       <div class="dark:bg-gray-800 dark:text-white">
         <div class="absolute top-0 right-0 left-0">
-          <Header class="absolute" />
+          <Header />
         </div>
         <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 h-screen flex justify-center items-center">
           <div class="mx-auto max-w-screen-sm text-center">
