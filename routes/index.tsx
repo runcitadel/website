@@ -8,6 +8,7 @@ import shuffle from "https://cdn.skypack.dev/lodash/shuffle?dts";
 import { parse } from "https://deno.land/std@0.161.0/encoding/yaml.ts";
 import MailerLite from "../islands/MailerLite.tsx";
 import { connect } from "https://deno.land/x/redis@v0.26.0/mod.ts";
+import { Footer } from "../components/Footer.tsx";
 
 const cache = Deno.env.get("REDIS_DATABASE") ? await connect({
   name: Deno.env.get("REDIS_DATABASE"),
@@ -380,6 +381,7 @@ export default function Home(ctx: PageProps<HomeProps>) {
 
           <MailerLite submitUrl="https://assets.mailerlite.com/jsonp/208143/forms/70562846841243609/subscribe" />
         </div>
+        <Footer />
       </div>
     </>
   );
