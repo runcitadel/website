@@ -5,6 +5,10 @@ export interface Post {
   title: string;
   publishedAt: Date;
   content: string;
+  author: {
+    name: string;
+    link: string;
+  }
 }
 
 export async function loadPost(slug: string): Promise<Post | null> {
@@ -25,6 +29,10 @@ export async function loadPost(slug: string): Promise<Post | null> {
     title: params.title,
     publishedAt,
     content: body,
+    author: {
+      name: params.authorName,
+      link: params.authorLink,
+    }
   };
 }
 

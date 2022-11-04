@@ -38,17 +38,30 @@ export default function PostPage(props: PageProps<Data>) {
         <Header />
         <div class="px-4 mx-auto max-w-screen-md">
           <h1 class="font-bold text-5xl pt-20">{post.title}</h1>
-          <time class="inline-block mt-4">
-            {new Date(post.publishedAt).toLocaleDateString(navigator.language, {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </time>
+          <span class="inline-block mt-4">
+            Written by{" "}
+            <a class="inline" href={post.author.link}>{post.author.name}</a> -
+            {" "}
+            <time class="inline">
+              {new Date(post.publishedAt).toLocaleDateString(
+                navigator.language,
+                {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                },
+              )}
+            </time>
+          </span>
           <style dangerouslySetInnerHTML={{ __html: gfm.CSS }} />
           <article
             class="mt-12 markdown-body dark:bg-gray-800 dark:text-white"
-            dangerouslySetInnerHTML={{ __html: gfm.render(post.content).replace("<img src=\"./", `<img src="./${post.slug}/`) }}
+            dangerouslySetInnerHTML={{
+              __html: gfm.render(post.content).replace(
+                '<img src="./',
+                `<img src="./${post.slug}/`,
+              ),
+            }}
           />
           <p class="mt-6 pb-3 text-center text-sm text-gray-600 dark:text-gray-200">
             (C) 2022 Citadel

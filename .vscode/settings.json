@@ -1,10 +1,6 @@
 {
   "deno.enable": true,
   "deno.lint": true,
-  "editor.defaultFormatter": "denoland.vscode-deno",
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "denoland.vscode-deno"
-  },
   "editor.suggest.showStatusBar": true,
   "editor.quickSuggestions": {
     "strings": true
@@ -12,7 +8,10 @@
   "[typescript]": {
     "editor.defaultFormatter": "denoland.vscode-deno"
   },
-  "[css]": {
-    "editor.defaultFormatter": "vscode.css-language-features"
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+  "[svg]": {
+    "editor.defaultFormatter": "jock.svg"
   }
 }
