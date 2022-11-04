@@ -29,9 +29,10 @@ const ignoredApps = ["btc-rpc-explorer-public", "btc-rpc-explorer-public-fast"];
 
 export const handler: Handlers<HomeProps | null> = {
   async GET(_, ctx) {
-    let parsed_apps = await cache.get("available_apps");
-    if (parsed_apps) {
-      parsed_apps = JSON.parse(parsed_apps);
+    let parsed_apps;
+    const cached_apps = await cache.get("available_apps");
+    if (cached_apps) {
+      parsed_apps = JSON.parse(cached_apps);
     } else {
       const octokitOptions = Deno.env.get("GITHUB_TOKEN")
         ? {
@@ -59,6 +60,7 @@ export const handler: Handlers<HomeProps | null> = {
         const app_file = await fetch(
           `https://raw.githubusercontent.com/${repo}/apps/${app.name}/app.yml`,
         );
+        // deno-lint-ignore no-explicit-any
         let app_data = parse(await app_file.text()) as any;
         if (!app_data?.metadata?.name || !app_data?.metadata?.tagline) {
           const app_file = await fetch(
