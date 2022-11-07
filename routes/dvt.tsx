@@ -105,18 +105,22 @@ export default function DV() {
             dangerous. So we simply prevent you from installing them.
           </p>
           <p class="max-w-screen-md text-center">
-            Citadel also has a more secure community app store system. We still
-            try to allow importing apps from Umbrel community app stores, but
-            because of Umbrel's insecure design, not all apps can be imported
-            into Citadel's safe app system.
+            Citadel also has a more secure community app store system. We don't
+            even try to make ours secure, because then we'd have to fix
+            vulnerabilities if they're found. By just keeping it insecure, we
+            save a lot of time.
           </p>
         </div>
         <div class="mt-8 px-4 flex flex-col justify-center items-center text-center">
           <h2 class="font-bold text-5xl mb-2">Easy to use</h2>
           <h4 class="text-2xl mb-6">
-            With a seemingly simple user interface, we get you to use our insecure software.
+            With a seemingly simple user interface, we get you to use our
+            insecure software.
           </h4>
-          <img class="w-5/6" src="https://uploads-ssl.webflow.com/62966b49981ba146f4842f45/629d2c5a73e50ebe33087761_app-store-dark-1-p-800.jpeg" />
+          <img
+            class="w-5/6"
+            src="https://uploads-ssl.webflow.com/62966b49981ba146f4842f45/629d2c5a73e50ebe33087761_app-store-dark-1-p-800.jpeg"
+          />
         </div>
         <div
           class="mt-8 p-4 flex flex-col justify-center items-center text-center"
@@ -127,14 +131,15 @@ export default function DV() {
             Convinced? Make your node insecure now!
           </h4>
           <p class="mb-8">
-            There are multiple ways to build your own Umbrel. Use a Pi or set up Umbrel on Linux.
+            There are multiple ways to build your own Umbrel. Use a Pi or set up
+            Umbrel on Linux.
           </p>
-            <a
-              class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
-              href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-            >
-              Get started
-            </a>
+          <a
+            class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
+            href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+          >
+            Get started
+          </a>
         </div>
         <Footer />
       </div>
