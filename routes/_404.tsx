@@ -7,6 +7,7 @@ export default function Home() {
       <Head>
         <title>Not found - Citadel</title>
         <link rel="stylesheet" href="/style.css" type="text/css" />
+        <script async src="https://cdn.splitbee.io/sb.js"></script>
       </Head>
       <div class="dark:bg-gray-800 dark:text-white">
         <div class="absolute top-0 right-0 left-0">
