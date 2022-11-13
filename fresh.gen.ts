@@ -4,20 +4,22 @@
 
 import config from "./deno.json" assert { type: "json" };
 import * as $0 from "./routes/_404.tsx";
-import * as $1 from "./routes/blog/[slug]/[file].ts";
-import * as $2 from "./routes/blog/[slug]/index.tsx";
-import * as $3 from "./routes/blog/index.tsx";
-import * as $4 from "./routes/index.tsx";
+import * as $1 from "./routes/api/apps.ts";
+import * as $2 from "./routes/blog/[slug]/[file].ts";
+import * as $3 from "./routes/blog/[slug]/index.tsx";
+import * as $4 from "./routes/blog/index.tsx";
+import * as $5 from "./routes/index.tsx";
 import * as $$0 from "./islands/MailerLite.tsx";
 import * as $$1 from "./islands/Slider.tsx";
 
 const manifest = {
   routes: {
     "./routes/_404.tsx": $0,
-    "./routes/blog/[slug]/[file].ts": $1,
-    "./routes/blog/[slug]/index.tsx": $2,
-    "./routes/blog/index.tsx": $3,
-    "./routes/index.tsx": $4,
+    "./routes/api/apps.ts": $1,
+    "./routes/blog/[slug]/[file].ts": $2,
+    "./routes/blog/[slug]/index.tsx": $3,
+    "./routes/blog/index.tsx": $4,
+    "./routes/index.tsx": $5,
   },
   islands: {
     "./islands/MailerLite.tsx": $$0,
