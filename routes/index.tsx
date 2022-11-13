@@ -52,7 +52,7 @@ export const handler: Handlers<HomeProps | null> = {
         owner: "runcitadel",
         path: "apps",
       })).data as components["schemas"]["content-directory"];
-      const allApps = shuffle([...nonfreeApps, ...apps]);
+      const allApps = [...nonfreeApps, ...apps];
       const simplified_apps = allApps.filter((app) =>
         !ignoredApps.includes(app.name)
       ).map(async (app) => {
@@ -102,7 +102,7 @@ export const handler: Handlers<HomeProps | null> = {
       });
     }
     return ctx.render({
-      apps: parsed_apps,
+      apps: shuffle(parsed_apps),
     });
   },
 };
