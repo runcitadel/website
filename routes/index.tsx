@@ -10,13 +10,15 @@ import MailerLite from "../islands/MailerLite.tsx";
 import { connect } from "https://deno.land/x/redis@v0.26.0/mod.ts";
 import { Footer } from "../components/Footer.tsx";
 
-const cache = Deno.env.get("REDIS_DATABASE") ? await connect({
-  name: Deno.env.get("REDIS_DATABASE"),
-  port: Number(Deno.env.get("REDIS_PORT")),
-  hostname: Deno.env.get("REDIS_HOST") as string,
-  username: Deno.env.get("REDIS_USERNAME"),
-  password: Deno.env.get("REDIS_PASSWORD"),
-}) : null;
+const cache = Deno.env.get("REDIS_DATABASE")
+  ? await connect({
+    name: Deno.env.get("REDIS_DATABASE"),
+    port: Number(Deno.env.get("REDIS_PORT")),
+    hostname: Deno.env.get("REDIS_HOST") as string,
+    username: Deno.env.get("REDIS_USERNAME"),
+    password: Deno.env.get("REDIS_PASSWORD"),
+  })
+  : null;
 
 interface HomeProps {
   apps: {
@@ -43,29 +45,32 @@ export const handler: Handlers<HomeProps | null> = {
       const octokit = new Octokit(octokitOptions);
       const apps = (await octokit.rest.repos.getContent({
         repo: "apps",
-        owner: "runcitadel",
-        path: "apps",
-        ref: "0.1.0"
+        owner: "citadel-core",
+        path: "v4",
+        ref: "main",
       })).data as components["schemas"]["content-directory"];
       const nonfreeApps = (await octokit.rest.repos.getContent({
         repo: "apps-nonfree",
-        owner: "runcitadel",
-        path: "apps",
+        owner: "citadel-core",
+        path: "v4",
+        ref: "main",
       })).data as components["schemas"]["content-directory"];
       const allApps = [...nonfreeApps, ...apps];
       const simplified_apps = allApps.filter((app) =>
         !ignoredApps.includes(app.name)
       ).map(async (app) => {
-        const split = app.html_url!.replace("https://github.com/", "").split("/");
+        const split = app.html_url!.replace("https://github.com/", "").split(
+          "/",
+        );
         const repo = [split[0], split[1], split[3]].join("/");
         const app_file = await fetch(
-          `https://raw.githubusercontent.com/${repo}/apps/${app.name}/app.yml`,
+          `https://raw.githubusercontent.com/${repo}/v4/${app.name}/app.yml`,
         );
         // deno-lint-ignore no-explicit-any
         let app_data = parse(await app_file.text()) as any;
         if (!app_data?.metadata?.name || !app_data?.metadata?.tagline) {
           const app_file = await fetch(
-            `https://raw.githubusercontent.com/${repo}/apps/${app.name}/app.yml.jinja`,
+            `https://raw.githubusercontent.com/${repo}/v4/${app.name}/app.yml.jinja`,
           );
           const text = await app_file.text();
           const metadata = {
@@ -153,8 +158,8 @@ export default function Home(ctx: PageProps<HomeProps>) {
           </h4>
           <p class="max-w-screen-md text-center">
             At Citadel, we value transparency. Every part of our code, every
-            cent and satoshi we receive, everything we build and everything else we do is completely
-            transparent.
+            cent and satoshi we receive, everything we build and everything else
+            we do is completely transparent.
           </p>
           <p>
             <a
@@ -206,7 +211,8 @@ export default function Home(ctx: PageProps<HomeProps>) {
             Umbrel*!
           </p>
           <p class="mb-8 text-sm text-gray-700 dark:text-gray-300">
-            *Unlike Umbrel's app system, Citadel's app system is secure and implements a permission system that not all Umbrel apps support.
+            *Unlike Umbrel's app system, Citadel's app system is secure and
+            implements a permission system that not all Umbrel apps support.
           </p>
           <Slider
             apps={ctx.data.apps.slice(
@@ -237,8 +243,10 @@ export default function Home(ctx: PageProps<HomeProps>) {
             there are any updates available upstream).
           </p>
           <p class="max-w-screen-md text-center">
-            Citadel also has a more secure community app store system. We still try to allow importing apps from Umbrel community app stores,
-            but because of Umbrel's insecure design, not all apps can be imported into Citadel's safe app system.
+            Citadel also has a more secure community app store system. We still
+            try to allow importing apps from Umbrel community app stores, but
+            because of Umbrel's insecure design, not all apps can be imported
+            into Citadel's safe app system.
           </p>
           <h2 class="font-bold text-2xl mb-2 mt-8">Upgrade to Citadel</h2>
           <h4 class="text-lg mb-6">
@@ -250,6 +258,39 @@ export default function Home(ctx: PageProps<HomeProps>) {
           </p>
 
           <MailerLite submitUrl="https://assets.mailerlite.com/jsonp/208143/forms/70567193145771829/subscribe" />
+        </div>
+        <div class="my-16 px-4 py-12 flex flex-col justify-center items-center text-center bg-gray-200 dark:bg-gray-700">
+          <h2 class="font-bold text-5xl mb-2">Secure &amp; fast by default</h2>
+          <h4 class="text-2xl mb-6">
+            We offer a fully secure HTTPS experience for the local network
+          </h4>
+          <div class="flex">
+            <div>
+              <p class="max-w-screen-md text-center">
+                With our one-click HTTPS setup, you can encrypt all your nodes
+                traffic in the local network and for remote access. If you have
+                a public IP, you can also expose any services on your node
+                publicly and get one-click HTTPS configuration. This feature
+                also speeds up your node by enabling HTTP/2 and HTTP/3.
+              </p>
+              <p class="max-w-screen-md text-center">
+                This feature is powered by{" "}
+                <a
+                  class="text-underline text-blue-700"
+                  href="https://letsencrypt.org/"
+                >
+                  Let's Encrypt
+                </a>{"  "}
+                and{" "}
+                <a
+                  class="text-underline text-blue-700"
+                  href="https://runningcitadel.com/"
+                >
+                  runningcitadel.com
+                </a>.
+              </p>
+            </div>
+          </div>
         </div>
         <div class="mt-8 px-4 flex flex-col justify-center items-center text-center">
           <h2 class="font-bold text-5xl mb-2">Easy to use</h2>
