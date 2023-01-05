@@ -205,7 +205,7 @@ export default function Home(ctx: PageProps<HomeProps>) {
             and you can install it. This even includes app stores built for
             Umbrel*!
           </p>
-          <p class="mb-8 text-small text-gray-700 dark:text-gray-300">
+          <p class="mb-8 text-sm text-gray-700 dark:text-gray-300">
             *Unlike Umbrel's app system, Citadel's app system is secure and implements a permission system that not all Umbrel apps support.
           </p>
           <Slider
