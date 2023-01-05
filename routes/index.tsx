@@ -190,7 +190,7 @@ export default function Home(ctx: PageProps<HomeProps>) {
             </figcaption>
           </figure>
         </div>
-        <div class="mt-8 p-4 flex flex-col justify-center items-center text-center">
+        <div class="mt-8 py-4 flex flex-col justify-center items-center text-center">
           <Slider
             apps={ctx.data.apps.slice(0, Math.floor(ctx.data.apps.length / 2))}
             isReverse
@@ -199,11 +199,14 @@ export default function Home(ctx: PageProps<HomeProps>) {
           <h4 class="text-2xl mb-6">
             With our app store, you can run literally anything on your node.
           </h4>
-          <p class="mb-8">
+          <p class="mb-2">
             Not only does Citadel include a large selection of apps already
             available, anyone from the community can build their own app store
             and you can install it. This even includes app stores built for
-            Umbrel!
+            Umbrel*!
+          </p>
+          <p class="mb-8 text-small text-gray-700 dark:text-gray-300">
+            *Unlike Umbrel's app system, Citadel's app system is secure and implements a permission system that not all Umbrel apps support.
           </p>
           <Slider
             apps={ctx.data.apps.slice(
