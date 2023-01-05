@@ -276,14 +276,14 @@ export default function Home(ctx: PageProps<HomeProps>) {
               <p class="max-w-screen-md text-center">
                 This feature is powered by{" "}
                 <a
-                  class="text-underline text-blue-700"
+                  class="text-underline text-blue-700 dark:text-blue-400"
                   href="https://letsencrypt.org/"
                 >
                   Let's Encrypt
                 </a>{"  "}
                 and{" "}
                 <a
-                  class="text-underline text-blue-700"
+                  class="text-underline text-blue-700 dark:text-blue-400"
                   href="https://runningcitadel.com/"
                 >
                   runningcitadel.com
