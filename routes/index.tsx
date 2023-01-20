@@ -7,12 +7,11 @@ import Slider from "../islands/Slider.tsx";
 import shuffle from "https://cdn.skypack.dev/lodash/shuffle?dts";
 import { parse } from "https://deno.land/std@0.161.0/encoding/yaml.ts";
 import MailerLite from "../islands/MailerLite.tsx";
-import { connect } from "https://deno.land/x/redis@v0.26.0/mod.ts";
+import { connect } from "https://deno.land/x/redis@v0.29.0/mod.ts";
 import { Footer } from "../components/Footer.tsx";
 
-const cache = Deno.env.get("REDIS_DATABASE")
+const cache = Deno.env.get("REDIS_HOST")
   ? await connect({
-    name: Deno.env.get("REDIS_DATABASE"),
     port: Number(Deno.env.get("REDIS_PORT")),
     hostname: Deno.env.get("REDIS_HOST") as string,
     username: Deno.env.get("REDIS_USERNAME"),
