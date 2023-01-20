@@ -7,17 +7,13 @@ import Slider from "../islands/Slider.tsx";
 import shuffle from "https://cdn.skypack.dev/lodash/shuffle?dts";
 import { parse } from "https://deno.land/std@0.161.0/encoding/yaml.ts";
 import MailerLite from "../islands/MailerLite.tsx";
-import { connect } from "https://deno.land/x/redis@v0.29.0/mod.ts";
 import { Footer } from "../components/Footer.tsx";
+import { Redis } from 'npm:@upstash/redis'
 
-const cache = Deno.env.get("REDIS_HOST")
-  ? await connect({
-    port: Number(Deno.env.get("REDIS_PORT")),
-    hostname: Deno.env.get("REDIS_HOST") as string,
-    username: Deno.env.get("REDIS_USERNAME"),
-    password: Deno.env.get("REDIS_PASSWORD"),
-  })
-  : null;
+const redis = Deno.env.get("UPSTASH_REDIS_REST_URL") ? new Redis({
+  url: Deno.env.get("UPSTASH_REDIS_REST_URL"),
+  token: Deno.env.get("UPSTASH_REDIS_REST_TOKEN"),
+}) : null;
 
 interface HomeProps {
   apps: {
@@ -32,7 +28,7 @@ const ignoredApps = ["btc-rpc-explorer-public", "btc-rpc-explorer-public-fast"];
 export const handler: Handlers<HomeProps | null> = {
   async GET(_, ctx) {
     let parsed_apps;
-    const cached_apps = await cache?.get("available_apps");
+    const cached_apps = await redis?.get("available_apps");
     if (cached_apps) {
       parsed_apps = JSON.parse(cached_apps);
     } else {
@@ -101,7 +97,7 @@ export const handler: Handlers<HomeProps | null> = {
       });
       parsed_apps = await Promise.all(simplified_apps);
 
-      await cache?.set("available_apps", JSON.stringify(parsed_apps), {
+      await redis?.set("available_apps", JSON.stringify(parsed_apps), {
         ex: 60 * 5,
       });
     }
