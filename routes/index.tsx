@@ -8,7 +8,7 @@ import shuffle from "https://cdn.skypack.dev/lodash/shuffle?dts";
 import { parse } from "https://deno.land/std@0.161.0/encoding/yaml.ts";
 import MailerLite from "../islands/MailerLite.tsx";
 import { Footer } from "../components/Footer.tsx";
-import { Redis } from 'npm:@upstash/redis'
+import { Redis } from 'https://cdn.skypack.dev/@upstash/redis?dts';
 
 const redis = Deno.env.get("UPSTASH_REDIS_REST_URL") ? new Redis({
   url: Deno.env.get("UPSTASH_REDIS_REST_URL"),
