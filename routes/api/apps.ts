@@ -3,10 +3,9 @@ import { Octokit } from "https://cdn.skypack.dev/octokit?dts";
 import type { components } from "https://cdn.skypack.dev/@octokit/openapi-types?dts";
 import shuffle from "https://cdn.skypack.dev/lodash/shuffle?dts";
 import { parse } from "https://deno.land/std@0.161.0/encoding/yaml.ts";
-import { connect } from "https://deno.land/x/redis@v0.26.0/mod.ts";
+import { connect } from "https://deno.land/x/redis@v0.29.0/mod.ts";
 
-const cache = Deno.env.get("REDIS_DATABASE") ? await connect({
-  name: Deno.env.get("REDIS_DATABASE"),
+const cache = Deno.env.get("REDIS_HOST") ? await connect({
   port: Number(Deno.env.get("REDIS_PORT")),
   hostname: Deno.env.get("REDIS_HOST") as string,
   username: Deno.env.get("REDIS_USERNAME"),
