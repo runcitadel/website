@@ -25,6 +25,7 @@ export default function PostPage(props: PageProps<Data>) {
           name="description"
           content="Citadel is an open source personal server and Bitcoin node to run in your home."
         />
+        <script src="/piwik.js" />
       </Head>
       <div class="dark:bg-gray-800 dark:text-white">
         <div class="absolute top-0 right-0 left-0">

@@ -24,6 +24,7 @@ export default function PostPage(props: PageProps<Data>) {
       <Head>
         <title>{post.title} - Citadel Blog</title>
         <link rel="stylesheet" href="/style.css" type="text/css" />
+        <script src="/piwik.js" />
         <meta
           name="description"
           content="Citadel is an open source personal server and Bitcoin node to run in your home."
