@@ -28,7 +28,7 @@ const ignoredApps = ["btc-rpc-explorer-public", "btc-rpc-explorer-public-fast"];
 export const handler: Handlers<HomeProps | null> = {
   async GET(_, ctx) {
     let parsed_apps;
-    const cached_apps = await redis?.get("available_apps");
+    const cached_apps = await redis?.get("available_apps2");
     if (cached_apps) {
       parsed_apps = JSON.parse(cached_apps);
     } else {
@@ -97,7 +97,7 @@ export const handler: Handlers<HomeProps | null> = {
       });
       parsed_apps = await Promise.all(simplified_apps);
 
-      await redis?.set("available_apps", JSON.stringify(parsed_apps), {
+      await redis?.set("available_apps2", JSON.stringify(parsed_apps), {
         ex: 60 * 5,
       });
     }
