@@ -18,7 +18,7 @@ export const handler: Handlers = {
     let parsed_apps;
     const cached_apps = await redis?.get("available_apps");
     if (cached_apps) {
-      parsed_apps = JSON.parse(cached_apps);
+      parsed_apps = cached_apps;
     } else {
       const octokitOptions = Deno.env.get("GITHUB_TOKEN")
         ? {
@@ -82,7 +82,7 @@ export const handler: Handlers = {
       });
       parsed_apps = await Promise.all(simplified_apps);
 
-      await redis?.set("available_apps", JSON.stringify(parsed_apps), {
+      await redis?.set("available_apps", parsed_apps, {
         ex: 60 * 5,
       });
     }
