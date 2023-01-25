@@ -129,15 +129,14 @@ export default function Home(ctx: PageProps<HomeProps>) {
         >
           <img
             src="/citadel-logo-gradient-overlap.webp"
-            class="h-64 ml-auto mr-auto mt-4 lg:h-4/6 xl:h-5/6 hover"
+            class="h-64 ml-auto mr-auto mt-4 lg:h-1/2 xl:h-4/6 2xl:h-5/6 hover"
           />
           <div class="m-4 ml-auto">
             <h1 class="text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl mb-4">
               Your personal server
             </h1>
             <h3 class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
-              Take control of your data and run your personal server, together
-              with a Bitcoin Lightning node, in your home.
+              Regain control of your data with your personal server and Bitcoin Lightning node in your home.
             </h3>
             <a
               class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
@@ -154,7 +153,7 @@ export default function Home(ctx: PageProps<HomeProps>) {
           </h4>
           <p class="max-w-screen-md text-center">
             At Citadel, we value transparency. Every part of our code, every
-            cent and satoshi we receive, everything we build and everything else
+            cent and satoshi we receive and spend, everything we build and everything else
             we do is completely transparent.
           </p>
           <p>
@@ -224,9 +223,8 @@ export default function Home(ctx: PageProps<HomeProps>) {
           </h4>
           <p class="max-w-screen-md text-center">
             Citadel started out as a modified version of Umbrel. Our goal was to
-            keep the oiginal idea of Bitcoin: Build in the open. Unlike Umbrel,
-            which only publishes their code after releases, we stay transparent
-            with what we do and allow you to use our code for any purpose.
+            keep the original idea of Bitcoin: Build in the open. Unlike Umbrel, we
+            always stay transparent with what we do.
           </p>
           <p class="max-w-screen-md text-center">
             We also ensure all of our apps are up to date. On Umbrel{" "}
@@ -235,14 +233,14 @@ export default function Home(ctx: PageProps<HomeProps>) {
               class="text-underline text-blue-700 dark:text-blue-400"
             >
               a lot of apps are outdated
-            </a>. On Citadel, app updates are made available almost daily (If
-            there are any updates available upstream).
+            </a>. On Citadel, app updates are made available almost as soon as the apps get new releases.
           </p>
           <p class="max-w-screen-md text-center">
-            Citadel also has a more secure community app store system. We still
-            try to allow importing apps from Umbrel community app stores, but
-            because of Umbrel's insecure design, not all apps can be imported
-            into Citadel's safe app system.
+            We also focus on security. Citadel's app system is built on a solid foundation malicious apps can't easily bypass, providing protections Umbrel does not offer.
+          </p>
+          <p class="max-w-screen-md text-center">
+           Umbrels current license does not allow forks for commercial purposes, or completely prohibits modifying some parts of the code.
+            Citadel fixes this and puts <b>you</b> back in control of your node.
           </p>
           <h2 class="font-bold text-2xl mb-2 mt-8">Upgrade to Citadel</h2>
           <h4 class="text-lg mb-6">
@@ -253,7 +251,7 @@ export default function Home(ctx: PageProps<HomeProps>) {
             Join our waitlist to get notified when you can upgrade your node.
           </p>
 
-          <MailerLite submitUrl="https://assets.mailerlite.com/jsonp/208143/forms/70567193145771829/subscribe" />
+          <MailerLite submitUrl="https://assets.mailerlite.com/jsonp/208143/forms/70567193145771829/subscribe" piwikName="umbrel" />
         </div>
         <div class="my-16 px-4 py-12 flex flex-col justify-center items-center text-center bg-gray-200 dark:bg-gray-700">
           <h2 class="font-bold text-5xl mb-2">Secure &amp; fast by default</h2>
@@ -410,15 +408,13 @@ export default function Home(ctx: PageProps<HomeProps>) {
         <div class="mt-4 px-4 py-12 flex flex-col justify-center items-center text-center bg-gray-200 dark:bg-gray-700">
           <h2 class="font-bold text-5xl mb-2">Join the waitlist</h2>
           <h4 class="text-2xl mb-6">
-            Get access to Citadel as soon as we launch
+            Get early access to Citadel
           </h4>
           <p class="max-w-screen-md text-center mb-4">
-            Citadel is currently in beta and we do not have an install guide
-            yet. However, you can join our waitlist to get access as soon as we
-            launch.
+            Citadel is currently in an invite-only beta. Join our waitlist to get early access!
           </p>
 
-          <MailerLite submitUrl="https://assets.mailerlite.com/jsonp/208143/forms/70562846841243609/subscribe" />
+          <MailerLite submitUrl="https://assets.mailerlite.com/jsonp/208143/forms/70562846841243609/subscribe" piwikName="main" />
         </div>
         <Footer />
       </div>
