@@ -1,6 +1,7 @@
 import { useState } from "preact/hooks";
 
 interface MailerLiteProps {
+  piwikName?: string;
   submitUrl: string;
 }
 
@@ -13,7 +14,6 @@ export default function MailerLite(props: MailerLiteProps) {
     if (submitted) return;
     const data = new FormData();
     data.append("fields[email]", email);
-    console.log(props.submitUrl);
 
     const res = await fetch(props.submitUrl, {
         method: "POST",
@@ -22,6 +22,12 @@ export default function MailerLite(props: MailerLiteProps) {
     const json = await res.json();
     if (json.success) {
         setSubmitted(true);
+        try {
+          // @ts-ignore
+          _paq.push(["trackEvent", "waitlist", "waitlist-signup", `waitlist-signup-${props.piwikName || "unknown"}`]);
+        } catch (e) {
+          console.error(e);
+        }
     }
   };
 
