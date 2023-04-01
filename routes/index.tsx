@@ -166,7 +166,7 @@ export default function Home(ctx: PageProps<HomeProps>) {
             or{" "}
             <a
               class="text-underline text-blue-700 dark:text-blue-400"
-              href="https://opencollective.com/runcitadel"
+              href="https://opencollective.com/nirvati"
             >
               view our finances
             </a>.
