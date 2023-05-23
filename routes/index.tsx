@@ -1,19 +1,10 @@
 import { Head } from "$fresh/runtime.ts";
 import { Header } from "../components/Header.tsx";
 import { Handlers, PageProps } from "$fresh/server.ts";
-import { Octokit } from "https://cdn.skypack.dev/octokit?dts";
-import type { components } from "https://cdn.skypack.dev/@octokit/openapi-types?dts";
 import Slider from "../islands/Slider.tsx";
 import shuffle from "https://cdn.skypack.dev/lodash/shuffle?dts";
 import { parse } from "https://deno.land/std@0.161.0/encoding/yaml.ts";
-import MailerLite from "../islands/MailerLite.tsx";
 import { Footer } from "../components/Footer.tsx";
-import { Redis } from 'https://cdn.skypack.dev/@upstash/redis?dts';
-
-const redis = Deno.env.get("UPSTASH_REDIS_REST_URL") ? new Redis({
-  url: Deno.env.get("UPSTASH_REDIS_REST_URL"),
-  token: Deno.env.get("UPSTASH_REDIS_REST_TOKEN"),
-}) : null;
 
 interface HomeProps {
   apps: {
