@@ -7,7 +7,7 @@ const ignoredApps = ["btc-rpc-explorer-public", "btc-rpc-explorer-public-fast"];
 
 export const handler: Handlers<null> = {
   async GET(_, ctx) {
-    const res = ctx.render();
+    const res = await ctx.render();
   res.headers.set(
       "Link",
       '<https://s2.svgbox.net/pen-brushes.svg?ic=brush-1&color=ffff43>; rel="preconnect", <https://s2.svgbox.net/pen-brushes.svg?ic=brush-1&color=0da200>; rel="preconnect", </style.css>; rel="preconnect"',
