@@ -72,3 +72,20 @@
     --color-danger-fg: #f85149
   }
 }
+
+
+.marked {
+    background: url(//s2.svgbox.net/pen-brushes.svg?ic=brush-1&color=ffff43);
+    background-position: center;
+    margin: -2px -6px;
+    padding: 2px 6px;
+    background-repeat: no-repeat;
+    /* Only required in Firefox */
+    background-size: 100% 100%;
+}
+
+@media (prefers-color-scheme: dark) {
+    .marked {
+        background-image: url(//s2.svgbox.net/pen-brushes.svg?ic=brush-1&color=0da200);
+    }
+}
