@@ -1,22 +1,11 @@
 import { Head } from "$fresh/runtime.ts";
 import { Header } from "../components/Header.tsx";
 import { Handlers, PageProps } from "$fresh/server.ts";
-import Slider from "../islands/Slider.tsx";
-import shuffle from "https://cdn.skypack.dev/lodash/shuffle?dts";
-import { parse } from "https://deno.land/std@0.161.0/encoding/yaml.ts";
-import { Footer } from "../components/Footer.tsx";
 
-interface HomeProps {
-  apps: {
-    name: string;
-    id: string;
-    tagline: string;
-  }[];
-}
 
 const ignoredApps = ["btc-rpc-explorer-public", "btc-rpc-explorer-public-fast"];
 
-export const handler: Handlers<HomeProps | null> = {
+export const handler: Handlers<null> = {
   async GET(_, ctx) {
     const res = ctx.render();
   res.headers.set(
